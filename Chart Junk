@@ -1,8 +1,10 @@
-Chart junk refers to all visual elements in charts and graphs that are not necessary to comprehend the information represented on the graph or that distract the viewer from this information.
+###Chart junk refers to all visual elements in charts and graphs that are not necessary to comprehend the information represented on the graph or that distract the viewer from this information.
+  Examples of chart junk you saw in this video include:
+    1.Heavy grid lines
+    2.Unnecessary text
+    3.Pictures surrounding the visual
+    4.Shading or 3d components
+    5.Ornamented chart axes
 
-Examples of chart junk you saw in this video include:
-  1.Heavy grid lines
-  2.Unnecessary text
-  3.Pictures surrounding the visual
-  4.Shading or 3d components
-  5.Ornamented chart axes
+###The data-ink ratio, credited to Edward Tufte, is directly related to the idea of chart junk. The more of the ink in your visual that is related to conveying the message in the data, the better.
+  Limiting chart junk increases the data-ink ratio.
