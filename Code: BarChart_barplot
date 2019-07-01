@@ -1,0 +1,5 @@
+### Plot missing values
+df.isna().sum()
+na_counts = df.isna().sum()
+base_color = sb.color_palette()[0]
+sb.barplot(na_counts.index.values, na_counts, color = base_color)
