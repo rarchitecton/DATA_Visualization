@@ -1,0 +1,29 @@
+## A histogram is used to plot the distribution of a numeric variable.
+plt.hist(data = df, x = 'num_var')
+
+# specify bin edge, The first argument to arange is the leftmost bin edge, the second argument the upper limit, and the third argument the bin width. Note that even though I've specified the "max" value in the second argument, I've added a "+1" (the bin width). That is because arange will only return values that are strictly less than the upper limit. Adding in "+1" is a safety measure to ensure that the rightmost bin edge is at least the maximum data value, so that all of the data points are plotted.
+bin_edges = np.arange(0, df['num_var'].max()+1, 1)
+plt.hist(data = df, x = 'num_var', bins = bin_edges)
+
+# larger figure size for subplots
+plt.figure(figsize = [10, 5]) 
+
+# histogram on left, example of too-large bin size
+plt.subplot(1, 2, 1) # 1 row, 2 cols, subplot 1
+bin_edges = np.arange(0, df['num_var'].max()+4, 4)
+plt.hist(data = df, x = 'num_var', bins = bin_edges)
+
+# histogram on right, example of too-small bin size
+plt.subplot(1, 2, 2) # 1 row, 2 cols, subplot 2
+bin_edges = np.arange(0, df['num_var'].max()+1/4, 1/4)
+plt.hist(data = df, x = 'num_var', bins = bin_edges)
+
+Image: [https://s3.amazonaws.com/video.udacity-data.com/topher/2018/March/5aaaf900_l3-c08-histograms3/l3-c08-histograms3.png]
+
+# seaborn plot a trend line over the bins
+sb.distplot(df['col'],kde=True/False) #kernel density estimate (KDE)
+
+# seaborn plot a trend line over the bins with bin edges specified
+bin_edges = np.arange(0, df['num_var'].max()+1, 1)
+sb.distplot(df['num_var'], bins = bin_edges, kde = False,
+            hist_kws = {'alpha' : 1})
