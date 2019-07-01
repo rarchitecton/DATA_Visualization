@@ -1,0 +1,17 @@
+##Avoid using pie chart when there are more than 3 slices
+# code for the pie chart
+  sorted_counts = df['cat_var'].value_counts()
+  plt.pie(sorted_counts, labels = sorted_counts.index, startangle = 90,
+          counterclock = False);
+  plt.axis('square')
+
+# code for the donut chart
+  sorted_counts = df['cat_var'].value_counts()
+  plt.pie(sorted_counts, labels = sorted_counts.index, startangle = 90,
+          counterclock = False, wedgeprops = {'width' : 0.4});
+  plt.axis('square')
+  
+##Links
+1-Eager Eyes: Understanding Pie Charts[https://eagereyes.org/pie-charts]  
+2-how accurately do people perceive different formulations of the pie chart?[https://eagereyes.org/blog/2016/an-illustrated-tour-of-the-pie-chart-study-results]
+3-What to Consider when Creating a Pie Chart [https://academy.datawrapper.de/article/127-what-to-consider-when-creating-a-pie-chart]
