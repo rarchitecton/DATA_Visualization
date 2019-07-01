@@ -1,0 +1,58 @@
+###Bar chart
+  import numpy as np
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  import seaborn as sb
+  #A bar chart is used to depict the distribution of a categorical variable. Use countplot in seaborn as an example
+    sb.countplot(data = df, x = 'cat_var')
+  #change color to base color
+    base_color = sb.color_palette()[0]
+    sb.countplot(data = df, x = 'cat_var', color = base_color)
+  #use value_counts to obtain a ordering of norminal data
+    base_color = sb.color_palette()[0]
+    cat_order = df['cat_var'].value_counts().index
+    sb.countplot(data = df, x = 'cat_var', color = base_color, order = cat_order)
+    plt.xticks(rotation = 90) #rotate xticks 90 degree
+  #Convert data into an ordered type. Sorting out ordinal-Type data based on levels
+    level_order = ['Alpha', 'Beta', 'Gamma', 'Delta']
+    ordered_cat = pd.api.types.CategoricalDtype(ordered = True, categories = level_order)
+    df['cat_var'] = df['cat_var'].astype(ordered_cat)
+    base_color = sb.color_palette()[0]
+    sb.countplot(data = df, x = 'cat_var', color = base_color)
+-------------------------------------------------------
+### Absolute vs. Relative Frequency
+  # get proportion taken by most common group for derivation
+  # of tick marks
+  n_points = df.shape[0]
+  max_count = df['cat_var'].value_counts().max()
+  max_prop = max_count / n_points
+
+  # generate tick mark locations and names
+  tick_props = np.arange(0, max_prop, 0.05)
+  tick_names = ['{:0.2f}'.format(v) for v in tick_props]
+
+  # create the plot
+  base_color = sb.color_palette()[0]
+  sb.countplot(data = df, x = 'cat_var', color = base_color)
+  plt.yticks(tick_props * n_points, tick_names)
+  plt.ylabel('proportion')
+-------------------------------------------------------
+###Use text annotations to label the frequencies on bars
+  # create the plot
+  base_color = sb.color_palette()[0]
+  sb.countplot(data = df, x = 'cat_var', color = base_color)
+
+  # add annotations
+  n_points = df.shape[0]
+  cat_counts = df['cat_var'].value_counts()
+  locs, labels = plt.xticks() # get the current tick locations and labels
+
+  # loop through each pair of locations and labels
+  for loc, label in zip(locs, labels):
+
+      # get the text property for the label to get the correct count
+      count = cat_counts[label.get_text()]
+      pct_string = '{:0.1f}%'.format(100*count/n_points)
+
+      # print the annotation just below the top of the bar
+      plt.text(loc, count-8, pct_string, ha = 'center', color = 'w')
